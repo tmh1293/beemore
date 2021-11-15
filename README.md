@@ -2,7 +2,7 @@
 # User Story
 ## KHÁCH
 - Là khách, tôi có thể vào trang web và xem các thông tin bài viết
-- Là khách, tối có thể đăng ký tài khoản và đăng nhập
+- Là khách, tôi có thể đăng ký tài khoản và đăng nhập
 
 ## NGƯỜI DÙNG
 - Là người dùng, tôi có thể đăng bài theo danh mục, đặt hashtag
@@ -78,7 +78,22 @@
         require: true
     },
     postImg: Array,
-    hashTag: String,
+    categoryId: {
+        type:mongoose.Types.ObjectId,
+        ref:"Category"
+    }
+},{
+    timestamps:true
+}
+```
+
+## CategorySchema
+```sh
+{
+    categoryName:{
+        type: String,
+        require: true
+    }
 },{
     timestamps:true
 }
@@ -99,7 +114,7 @@
 
 },{
     timestamps:true
-});
+}
 ```
 ## ReportSchema
 ```sh
