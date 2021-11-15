@@ -1,10 +1,10 @@
 "# beemore" 
 # User Story
-##KHÁCH
+## KHÁCH
 - Là khách, tôi có thể vào trang web và xem các thông tin bài viết
 - Là khách, tối có thể đăng ký tài khoản và đăng nhập
 
-##NGƯỜI DÙNG
+## NGƯỜI DÙNG
 - Là người dùng, tôi có thể đăng bài theo danh mục, đặt hashtag
 - Là người dùng, tôi có thể voteup các bài viết
 - Là người dùng, tôi có thể báo cáo bài viết không hợp lệ
@@ -15,7 +15,7 @@
 - Là người dùng, tôi có thể được người khác theo dõi
 - Là người dùng, tôi có thể có trang cá nhân ( hiển thị những bài viết tôi đã đăng )
 
-##ADMIN
+## ADMIN
 - Là admin, tôi có thể phê duyệt bài viết
 - Là admin, tôi có thể xem các bài viết bị report
 - Là admin, tôi có thể xóa bài viết bất kì
