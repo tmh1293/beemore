@@ -24,7 +24,7 @@ Là admin, tôi có thể xóa bài viết bất kì
 - ReactJS để tạo giao diện
 
 # Thiết kế cơ sở dữ liệu
-- UserSchema
+## UserSchema
 ```sh
 {
     username: {
@@ -64,7 +64,7 @@ Là admin, tôi có thể xóa bài viết bất kì
 }
 ```
 
-- PostSchema
+## PostSchema
 ```sh
 {
     postTitle: {
@@ -81,7 +81,7 @@ Là admin, tôi có thể xóa bài viết bất kì
     timestamps:true
 }
 ```
-- CommentSchema
+## CommentSchema
 ```sh
 {
     type: {
@@ -99,7 +99,7 @@ Là admin, tôi có thể xóa bài viết bất kì
     timestamps:true
 });
 ```
-- ReportSchema
+## ReportSchema
 ```sh
 {
     content: {
