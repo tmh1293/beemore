@@ -77,7 +77,8 @@
     categoryId: {
         type:mongoose.Types.ObjectId,
         ref:"Category"
-    }
+    },
+    viewNumber: Number
 },{
     timestamps:true
 }
