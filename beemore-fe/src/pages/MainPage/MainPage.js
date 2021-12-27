@@ -26,7 +26,7 @@ export default function MainPage(){
           });
           if (res && res.success) {
             const { total, data } = res.data;
-            console.log(res.data)
+            //console.log(res.data)
     
             setStatus("done");
             setTotal(total)
@@ -60,6 +60,7 @@ export default function MainPage(){
                   //description={post.postId.content}
                   createdBy={post.postId.createdBy}
                   tag={post.tagId}
+                  slug={post.postId.slug}
                 />
               </div>
             ))}

@@ -52,7 +52,7 @@ if(status ==="error") return <div>Error</div>
           <Route element={<PrivatePage />}>
             <Route path="/" element={<MainPage/>} />
             <Route path="/newpost" element={<CreateNewPost/>}/>
-            <Route path="/posts/:postId" element={<PostDetail/>}/>
+            <Route path="/posts/:slug" element={<PostDetail/>}/>
           </Route>
           <Route element={<GuestPage />}>
             <Route path="/login" element={<Login/>} />

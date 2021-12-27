@@ -1,26 +1,26 @@
 import React from 'react';
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import { MainLayout } from '../../components/Layout'
+import { Comment, ListComment } from '../../components/Comment'
 import request from '../../api/request'
 export default function PostDetail() {
     const params = useParams();
     const location = useLocation();
-    const [searchParams, setSearchParams] = useSearchParams();
+    //const [searchParams, setSearchParams] = useSearchParams();
     const [status, setStatus] = React.useState("idle");
     const [postData, setPostData] = React.useState();
-    const { postId } = params;
-
+    const { slug } = params;
+    const getPostId = location.state.postId;
     const fetchData = async () => {
         try {
           setStatus("loading");
           const res = await request({
             method: "GET",
-            url: `/posts/${postId}/hashtag`,
+            url: `/posts/${getPostId}/hashtag`,
           });
           if (res && res.success) {
             const data = res.data;
             setPostData(data);
-            console.log(data);
             setStatus("done");
             return;
           }
@@ -60,7 +60,6 @@ export default function PostDetail() {
                 </div>
                 
                 <div className="pt-4 pl-4">{postId.content}</div>
-                <div>Tạo Comment Component đặt vào đây</div>
           </div>
         );
       };
@@ -68,6 +67,8 @@ export default function PostDetail() {
     return (
         <MainLayout>
             {renderPosts()}
+            <ListComment postId={getPostId} />
+            <Comment/>
         </MainLayout>
     )
 }

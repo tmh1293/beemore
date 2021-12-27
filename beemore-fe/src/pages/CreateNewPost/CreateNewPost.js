@@ -8,7 +8,7 @@ export default function CreateNewPost(){
 
     const [formState, setFormState] = React.useState({
         postTitle:'',
-        tag:'',
+        tag:[],
     });
     const [content, setContent] = React.useState();
 
@@ -22,6 +22,34 @@ export default function CreateNewPost(){
         })
     }
 
+    const handleTagInput = (e) => {
+        const {value, name} = e.target;
+        const myArray = value.toLowerCase().split(",");
+        setFormState(prevState => {
+            return {
+                ...prevState,
+                [name]:myArray
+            }
+        })
+    }
+
+    const validateInputTag = (evt) => {
+        var theEvent = evt || window.event;
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = evt.clipboardData.getData('text/plain');
+        } else {
+        // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[a-z,A-Z]|\,/;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {postTitle, tag} = formState;
@@ -30,7 +58,7 @@ export default function CreateNewPost(){
             const res = await request({
                 url:"/posts",
                 method: "POST",
-                data:{ postTitle, content},
+                data:{ postTitle, content, tag},
             })
             console.log(res.data);
         }
@@ -46,7 +74,7 @@ export default function CreateNewPost(){
             
                 <form className="flex justify-center flex-col w-3/6 rounded-lg p-4 shadow-lg" onSubmit={handleSubmit}>
                     <input placeholder="Tiêu đề bài viết" className="p-5 outline-0" name="postTitle" onChange={handleChangeForm} value={formState.postTitle}  ></input>
-                    <input placeholder="Tag bài viết" className="p-5 outline-0" name="tag" onChange={handleChangeForm} value={formState.tag}  ></input>
+                    <input placeholder="Tag bài viết" className="p-5 outline-0" name="tag" onChange={handleTagInput} value={formState.tag} onKeyPress={validateInputTag} ></input>
                     <CKEditor
                         editor={ ClassicEditor }
                         onChange={ ( event, editor ) => {
