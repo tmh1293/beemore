@@ -9,8 +9,10 @@ export default function PostDetail() {
     //const [searchParams, setSearchParams] = useSearchParams();
     const [status, setStatus] = React.useState("idle");
     const [postData, setPostData] = React.useState();
+    const [comments, setComments] = React.useState([]);
     const { slug } = params;
     const getPostId = location.state.postId;
+
     const fetchData = async () => {
         try {
           setStatus("loading");
@@ -33,6 +35,10 @@ export default function PostDetail() {
     React.useEffect(()=>{
         fetchData();
     },[])
+
+    const setCommentsList = (data) => {
+      setComments(data);
+    }
 
     const renderPosts = () => {
         if (status === "error") return <div>Error</div>;
@@ -67,8 +73,8 @@ export default function PostDetail() {
     return (
         <MainLayout>
             {renderPosts()}
-            <ListComment postId={getPostId} />
-            <Comment/>
+            <ListComment postId={getPostId} setComment={setCommentsList} getComment={comments} />
+            <Comment postId={getPostId} setComment={setCommentsList}/>
         </MainLayout>
     )
 }

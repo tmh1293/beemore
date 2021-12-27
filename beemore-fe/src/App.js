@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom'
 import './App.css';
 import Login from './pages/Login'
+import Register from './pages/Register'
 import MainPage from './pages/MainPage'
 import CreateNewPost from './pages/CreateNewPost'
 import PostDetail from './pages/PostDetail'
@@ -56,6 +57,7 @@ if(status ==="error") return <div>Error</div>
           </Route>
           <Route element={<GuestPage />}>
             <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
           </Route>
         </Routes>
       </AuthContext.Provider>

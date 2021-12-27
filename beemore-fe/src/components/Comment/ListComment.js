@@ -1,8 +1,9 @@
 import React from 'react'
 import request from '../../api/request'
-export default function ListComment({postId}) {
+export default function ListComment({postId,setComment,getComment}) {
     const [status, setStatus] = React.useState("idle");
-    const [comments, setComments] = React.useState([]);
+    //const [comments, setComments] = React.useState([]);
+    
 
     const fetchComment = async () => {
         try {
@@ -15,7 +16,7 @@ export default function ListComment({postId}) {
             const data = res.data;
     
             setStatus("done");
-            setComments(data);
+            setComment(data);
             return;
           }
           setStatus("error");
@@ -35,7 +36,7 @@ export default function ListComment({postId}) {
 
         return (
           <div>
-                {comments.map((comment) => (
+                {getComment.map((comment) => (
                 <div className="col-md-3 mt-6 flex justify-center" key={comment._id}>
                     <div>{comment.createdBy.username}</div>
                     <div>{comment.content}</div>
