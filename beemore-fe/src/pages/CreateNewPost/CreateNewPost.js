@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import NavBar from '../../components/NavBar'
 import { MainLayout } from '../../components/Layout'
 import request from '../../api/request'
 export default function CreateNewPost(){
@@ -69,7 +68,6 @@ export default function CreateNewPost(){
 
     return (
         <MainLayout>
-            <NavBar/>
             <div className="flex justify-center">
             
                 <form className="flex justify-center flex-col w-3/6 rounded-lg p-4 shadow-lg" onSubmit={handleSubmit}>

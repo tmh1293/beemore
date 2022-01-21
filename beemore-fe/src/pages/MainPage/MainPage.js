@@ -1,81 +1,53 @@
 import React from 'react';
-import NavBar from '../../components/NavBar'
-import request from "../../api/request";
-import PostCard from '../../components/PostCard'
 import {MainLayout} from '../../components/Layout'
+import SideBar from '../../components/SideBar'
+import Rank from "../../components/Rank";
+import News from "../../components/News";
+import ListPost from "../../components/ListPost";
+import { Link } from "react-router-dom";
 
-const PAGE_SIZE = 4;
 export default function MainPage(){
-    const [status, setStatus] = React.useState("idle");
-    const [posts, setPosts] = React.useState([]);
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const [total, setTotal] = React.useState(0);
-
-    const fetchPosts = async (page) => {
-        const skip = (page - 1) * PAGE_SIZE;
-        const limit = PAGE_SIZE;
-        try {
-          setStatus("loading");
-          const res = await request({
-            method: "GET",
-            url: "/posts",
-            params: {
-                skip,
-                limit,
-              },
-          });
-          if (res && res.success) {
-            const { total, data } = res.data;
-            //console.log(res.data)
     
-            setStatus("done");
-            setTotal(total)
-            setPosts(data);
-            return;
-          }
-          setStatus("error");
-        } catch (err) {
-          setStatus("error");
-        }
-    };
-
-      React.useEffect(() => {
-        fetchPosts(currentPage);
-      }, [currentPage]);
-
-    const renderPosts = () => {
-        if (status === "error") return <div>Error</div>;
-    
-        if (status === "idle" || status === "loading") return <div>Loading...</div>;
-    
-        return (
-          <div className="row">
-            {posts.map((post) => (
-              <div className="col-md-3 mt-6 flex justify-center" key={post._id}>
-                  
-                <PostCard
-                  postId={post.postId._id}
-                  title={post.postId.postTitle}
-                  imageUrl={post.postId.postImg}
-                  //description={post.postId.content}
-                  createdBy={post.postId.createdBy}
-                  tag={post.tagId}
-                  slug={post.postId.slug}
-                />
-              </div>
-            ))}
-          </div>
-        );
-      };
 
 
     return(
         <MainLayout>
-            <NavBar/> 
-            <div>
-                {renderPosts()}
+          <div className="flex flex-row p-10 ">
+            <div className="basis-1/6 hidden md:block"> 
+              <SideBar /> 
             </div>
+            <div className="basis-2/3 ">
+              <News />
+              <ListPost />
+            </div>
+            <div className="basis-1/6 hidden md:block items-center justify-center">
+            <Link to="/newpost" type="button"
+                            className="py-2 px-4 mb-4 flex justify-center items-center
+                            bg-blue-600 hover:bg-blue-700 focus:ring-blue-500
+                            focus:ring-offset-blue-200 text-white w-full
+                              transition ease-in duration-200 text-center text-base font-semibold
+                              shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+              &nbsp;&nbsp;Create new post
+            </Link>
+            <Rank/>
+            </div>
+          </div>
         </MainLayout>
-        
     )
 }

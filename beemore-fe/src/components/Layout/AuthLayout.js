@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export default function AuthLayout({ children }) {
   return (
-    <div className="flex justify-center mt-40">
+    <div className="h-full content-center">
       {children}
     </div>
-  )
+  );
 }

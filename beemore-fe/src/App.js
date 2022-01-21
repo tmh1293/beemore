@@ -6,6 +6,8 @@ import Register from './pages/Register'
 import MainPage from './pages/MainPage'
 import CreateNewPost from './pages/CreateNewPost'
 import PostDetail from './pages/PostDetail'
+import About from './pages/About'
+import Contact from './pages/Contact'
 import request from './api/request'
 import { GuestPage, PrivatePage } from './components/RulePage';
 
@@ -51,13 +53,15 @@ if(status ==="error") return <div>Error</div>
       <AuthContext.Provider value={{user, setUser, setStatus}}>
         <Routes>
           <Route element={<PrivatePage />}>
-            <Route path="/" element={<MainPage/>} />
             <Route path="/newpost" element={<CreateNewPost/>}/>
-            <Route path="/posts/:slug" element={<PostDetail/>}/>
           </Route>
           <Route element={<GuestPage />}>
             <Route path="/login" element={<Login/>} />
             <Route path="/register" element={<Register/>} />
+            <Route path="/" element={<MainPage/>} />
+            <Route path="/posts/:slug" element={<PostDetail/>}/>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
           </Route>
         </Routes>
       </AuthContext.Provider>

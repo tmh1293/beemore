@@ -35,23 +35,33 @@ export default function ListComment({postId,setComment,getComment}) {
         if (status === "idle" || status === "loading") return <div>Loading...</div>;
 
         return (
-          <div>
-                {getComment.map((comment) => (
-                <div className="col-md-3 mt-6 flex justify-center" key={comment._id}>
-                    <div>{comment.createdBy.username}</div>
-                    <div>{comment.content}</div>
+          <div className="w-full max-w-xl shadow bg-white rounded-lg px-4 pt-2">
+            <ul role="list" class="p-6 divide-y divide-slate-200">
+              {getComment.map((comment) => (
+                <li class="flex py-4 first:pt-0 last:pb-0" key={comment._id}>
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="https://source.unsplash.com/random/481x361"
+                  alt=""
+                />
+                <div class="ml-3 overflow-hidden">
+                  <p class="text-sm font-medium text-slate-900">{comment.createdBy.username}</p>
+                  <p class="text-sm text-slate-500">
+                  {comment.content}
+                  </p>
                 </div>
-            ))}
+              </li>
+            ))}    
+            </ul>
+                 
           </div>
         );
       };
 
     return (
         <>
-         <div>Đây là List Comment</div>
-         <div>{renderListComments()}</div>
+          {renderListComments()}
         </>
-       
     )
 
 }
